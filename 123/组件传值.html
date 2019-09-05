@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="box">
+			<div @click="num++">
+				{{num}}
+			</div>
+
+			<lee :cc="num" @lee="btn"></lee>
+		</div>
+		<template id="lee">
+			<div @click="btn">
+				hello {{num}}
+			</div>
+		</template>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		Vue.component('lee', {
+			template: '#lee',
+			props: ['cc'],//父级传子级
+			data() {
+				return {
+					num: this.cc
+				}
+			},
+			methods: {
+				btn() {
+                    this.num++
+                    this.$emit('lee',this.num)//子级传父级
+				}
+			},
+			watch: {
+				cc(a, b) {
+					this.num = a
+				}
+			}
+		})
+		new Vue({
+			el: "#box",
+			data: {
+				num: 0,
+			},
+			methods:{
+				btn(a){
+					this.num = a
+					console.log(a)
+				}
+			}
+		})
+	</script>
+
+</html>

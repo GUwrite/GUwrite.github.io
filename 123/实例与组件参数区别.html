@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+
+		实例：<input type="text" v-model='value'>
+		<div>
+			<lee></lee>
+		</div>
+	</div>
+	<template id="le">
+		<div>
+			组件：{{a}}
+		</div>
+	</template>
+	<script src="js/vue.js"></script>
+	<script>
+		Vue.component('lee',{
+			template:'#le',
+			data(){
+				return{
+					a:'11'
+				}
+			}
+
+		})
+		new Vue({
+			el:'#box',
+			data:{
+				value:'value'
+			}
+		})
+	</script>
+	<!-- <script>
+		Vue.component('lee',{
+			template:'#le',
+			data(){
+				return{
+					a:'22'
+				}
+			}
+
+		})
+		new Vue({
+			el:'#box',
+			data:{
+				value:'value1'
+			}
+		})
+	</script> -->
+	<!-- <script>
+		Vue.component('lee',{
+			template:'#le',
+			data(){
+				return{
+					a:'33'
+				}
+			}
+
+		})
+		new Vue({
+			el:'#box',
+			data:{
+				value:'value2'
+			}
+		})
+	</script> -->
+	<!-- <script>
+		Vue.component('lee',{
+			template:'#le',
+			data(){
+				return{
+					a:'44'
+				}
+			}
+
+		})
+		new Vue({
+			el:'#box',
+			data:{
+				value:'value3'
+			}
+		})
+	</script> -->
+	<!-- <script>
+		Vue.component('lee',{
+			template:'#le',
+			data(){
+				return{
+					a:'55'
+				}
+			}
+
+		})
+		new Vue({
+			el:'#box',
+			data:{
+				value:'value4'
+			}
+		})
+	</script> -->
+</body>
+</html>

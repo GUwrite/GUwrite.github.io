@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin:0;padding: 0;user-select: none;list-style: none;}
+		[v-cloak]{display: none;}
+		.search{
+			width: 1100px;
+			height:30px;
+			border: 1px solid #ccc;
+			float: left;
+		}
+		.search input{
+			width:100%;
+			height:30px;
+			box-sizing: border-box;
+			border:none;
+			padding-left:20px;
+			font-size: 20px;
+			line-height: 30px;
+		}
+		.content{
+			width:1200px;
+			height: 600px;
+			margin:0 auto;
+			position: relative;
+			overflow: hidden;
+		}
+		.cont{
+			width:1200px;
+			height: 35px;
+			margin:0 auto;
+		}
+		.singername{
+			width:98px;
+			line-height: 30px;
+			font-weight: 600;
+			font-size: 24px;
+			float: left;
+			text-align: center;
+		}
+		.item{
+			width:1200px;
+			height:auto;
+			background: white;
+			position: absolute;
+			top:0;
+			left:0;
+			z-index:1;
+			padding-left:5px;
+			box-sizing: border-box; 
+		}
+		.item p{
+			width:240px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 14px;
+			float: left;
+		}
+		.active{
+			color:green;
+		}
+		.singer{
+			width:1200px;
+			height: auto;
+			background: white;
+			position: absolute;
+			top:0;
+			left:1200px;
+			z-index:2;
+		}
+		.sing_list{
+			width: 100%;
+		}
+		.sing_list li{
+			width:100%;
+			height:30px;
+			line-height: 30px;
+		}
+		.sing_list li:nth-child(odd){
+			background: #ccc;
+		}
+		.songname{
+			width:600px;
+			float: left;
+		}
+		.albumname{
+			width:600px;
+			float: left;
+		}
+		.head{
+			width:100%;
+			height:50px;
+			line-height: 50px;
+		}
+		.head p{
+			width: 600px;
+			float: left;
+		}
+		.sou{
+			width:1200px;
+			margin:0 auto;
+			background:white;
+			display:none;
+		}
+		.souhead{
+			width:1200px;
+			height:40px;
+			line-height: 40px;
+			font-size: 26px;
+			padding-left: 10px;
+			box-sizing: border-box;
+			float: left;
+		}
+		.souhead p{
+			width:390px;
+			float: left;
+			height: 40px;
+		}
+		.sou_list li{
+			width:100%;
+			height:30px;
+			padding-left:10px;
+			box-sizing: border-box;
+		}
+		.sou_list li p{
+			width:390px;
+			height:30px;
+			line-height: 30px;
+			float: left;
+			text-overflow: ellipsis;
+			white-space:nowrap;
+			overflow: hidden;
+		}
+		.souhead p.close{
+			width:20px;
+			height:20px;
+			line-height: 20px;
+			text-align: center;
+			font-size: 16px;
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div id="box" v-cloak>
+		<div class="cont">
+			<div class="singername" @click='close'>歌手</div>
+			<div class="search">
+				<input type="text" v-model='values' placeholder="歌手/歌名" @keyup.enter='search'>
+			</div>
+		</div>
+		<div class="sou" ref='sou'>
+			<div class="souhead">
+				<p>歌曲</p>
+				<p>歌手</p>
+				<p>专辑</p>
+				<p class="close" @click='close2'>x</p>
+			</div>
+			<ul class="sou_list">
+				<li v-for='i in sousing_arr'>
+					<p  @click='songsrc(i.songmid)'>{{i.songname}}</p>
+					<p>{{i.singer[0].name}}</p>
+					<p>{{i.albumname}}</p>
+				</li>
+			</ul>
+		</div>
+		<div class="content" ref='content'>
+			<div class="item">
+				<p v-for='(i,$index) in arr' @click='btn(i.Fsinger_mid)' @mouseover='index=$index' :class="index==$index?'active':''">{{i.Fsinger_name}}</p>
+			</div>
+			<div class="singer" ref='singer'>
+				<p>歌手：{{singer_arr.singer_name}}</p>
+				<p>单曲：{{singer_arr.total}}</p>
+				<div>
+					<div class="head">
+						<p class="title">歌曲</p>
+						<p class="albumbox">专辑</p>
+					</div>
+					<ul class="sing_list">
+						<li v-for='i in singer_arr.list'>
+							<p class="songname"  @click='songsrc(i.musicData.songmid)'>{{i.musicData.songname}}</p>
+							<p class="albumname">{{i.musicData.albumname}}</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<audio v-if='song_url' controls="" autoplay="" :src="song_url"></audio>
+	</div>
+	<script src="js/vue.js"></script>
+	<script src="js/vue-resource.js"></script>
+	<script>
+		new Vue({
+			el:'#box',
+			data:{
+				index:'',
+				arr:'',
+				values:'',
+				Fsinger_mid:'',
+				singer_arr:'',
+				sousing_arr:'',
+				songmid:'',
+				song_url:''
+			},
+			methods:{
+				btn(a){
+					this.Fsinger_mid=a;
+					this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/fcg_v8_singer_track_cp.fcg?g_tk=5381&jsonpCallback=callback&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&singermid='+a+'&order=listen&begin=0&num=30&songstatus=1',{jsonpCallback:'callback'}).then((data)=>{
+						this.singer_arr=data.data.data
+						// console.log(data.data.data)
+						var child=this.$refs.singer;
+						child.style.left='0'
+
+					})
+				},
+				close(b){
+					this.Fsinger_mid=b
+					var close=this.$refs.close;
+					var child=this.$refs.singer;
+					child.style.left='1200px'
+				},
+				search(){
+					this.$http.jsonp('https://c.y.qq.com/soso/fcgi-bin/client_search_cp?g_tk=5381&p=1&n=20&w='+this.values+'&format=jsonp&jsonpCallback=callback&loginUin=0&hostUin=0&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&remoteplace=txt.yqq.song&t=0&aggr=1&cr=1&catZhida=1&flag_qc=0',{jsonpCallback:'callback'}).then((data)=>{
+						this.sousing_arr=data.body.data.song.list
+						// console.log(data.body.data.song.list)
+						var sou=this.$refs.sou
+						var content=this.$refs.content
+						sou.style.display='block';
+						content.style.display='none'
+					})
+				},
+				close2(){
+					var sou=this.$refs.sou
+					var content=this.$refs.content
+					sou.style.display='none';
+					content.style.display='block'
+				},
+				songsrc(a){
+					this.songmid=a
+					this.$http.jsonp('https://c.y.qq.com/base/fcgi-bin/fcg_music_express_mobile3.fcg?g_tk=1278911659&hostUin=0&format=jsonp&callback=callback&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&cid=205361747&uin=0&songmid='+a+'&filename=C400'+a+'.m4a&guid=3655047200',{jsonpCallback:'callback'}).then((data)=>{
+						var filename=data.body.data.items[0].filename
+						var vkey=data.body.data.items[0].vkey
+						// console.log(data.body.data.items[0])
+						this.song_url=`http://dl.stream.qqmusic.qq.com/${filename}?vkey=${vkey}&guid=3655047200&fromtag=66`
+					})
+				}
+			},
+			created(){
+				this.$http.jsonp('https://c.y.qq.com/v8/fcg-bin/v8.fcg?channel=singer&page=list&key=all_all_all&pagesize=100&pagenum=1&g_tk=5381&jsonpCallback=callback&loginUin=0&hostUin=0&format=jsonp&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0',{jsonpCallback:'callback'}).then((data)=>{
+					this.arr=data.body.data.list
+					// console.log(data.body.data.list)
+				})
+			},
+		})
+	</script>
+</body>
+</html>

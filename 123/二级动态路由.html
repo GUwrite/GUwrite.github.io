@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<div style="height: 30px;background: #ccc;">
+			<div style="line-height: 30px;float: left;padding:0 20px;background: #ccc;"><a href="#/">首页</a></div>
+			<div style="line-height: 30px;float: left;padding:0 20px;background: #ccc;"><a href="#/list/list_1/1">列表</a></div>
+		</div>
+		<div style="min-height: 400px;">
+			<router-view></router-view>
+		</div>
+	</div>
+	<template id="index">
+		<div>首页</div>
+	</template>
+	<template id="list">
+		<div>
+			<div style="width: 200px;min-height: 400px;float: left;">
+				<div v-for='i in 20' style="line-height: 30px;"><a :href="'#/list/list_1/'+i">{{i}}</a></div>
+			</div>
+			<div style="float: left;min-height: 400px;width: 300px;">
+				<router-view></router-view>
+			</div>
+		</div>
+	</template>
+	<template id="list_1">
+		<div>
+			{{$route.path}}
+		</div>
+	</template>
+	<script src="js/vue.js"></script>
+	<script src="js/vue-router.js"></script>
+	<script>
+		var index={template:'#index'}
+		var list={template:'#list'}
+
+		var routes=[
+			{path:'/',component:index},
+			{
+				path:'/list',component:list,
+				children:[
+					{path:'list_1/:uid',component:{template:'#list_1'}}
+				]
+			}
+		]
+
+		var router=new VueRouter({
+			routes
+		})
+
+		new Vue({
+			el:'#box',
+			router
+		})
+	</script>
+</body>
+</html>

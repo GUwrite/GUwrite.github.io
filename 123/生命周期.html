@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		{{a}}
+	</div>
+	<script src="js/vue.js"></script>
+	<script>
+		// new Vue({
+		// 	el:'#box',
+		// 	data:{
+		// 		a:23
+		// 	},
+		// 	beforeCreate(){
+		// 		console.log('创建前',this.a)
+		// 	},
+		// 	created(){
+		// 		console.log('创建后',this.a)
+				
+		// 	},
+		// 	beforeMount(){
+				
+		// 		console.log('渲染前',this.a)
+		// 	},
+		// 	mounted(){
+		// 		this.a = 44
+		// 		console.log('渲染后',this.a)
+		// 	},
+		// 	beforeUpdate(){
+		// 		console.log('view更新前',this.a)
+		// 	},
+		// 	updated(){
+		// 		console.log('view更新后',this.a)
+		// 	},
+		// 	beforeDestroy(){
+		// 		console.log('销毁前',this.a)
+		// 	},
+		// 	destroyed(){
+		// 		console.log('销毁后',this.a)
+		// 	},
+		// })
+		// new Vue({
+		// 	el:'#box',
+		// 	data:{
+		// 		a:23
+		// 	},
+		// 	beforeCreate(){
+		// 		console.log('创建前',this.a)
+		// 	},
+		// 	created(){
+		// 		console.log('创建后',this.a)
+		// 	},
+		// 	beforeMount(){
+		// 		console.log('渲染前',this.a)
+		// 	},
+		// 	mounted(){
+		// 		this.a=55
+		// 		console.log('渲染后',this.a)
+		// 	},
+		// 	beforeUpdate(){
+		// 		console.log('更新前',this.a)
+		// 	},
+		// 	updated(){
+		// 		console.log('更新后',this.a)
+		// 	},
+		// 	beforeDestroy(){
+		// 		console.log('销毁前',this.a)
+		// 	},
+		// 	destroyed(){
+		// 		console.log('销毁后',this.a)
+		// 	}
+		// })
+		// new Vue({
+		// 	el:'#box',
+		// 	data:{
+		// 		a:66
+		// 	},
+		// 	beforeCreate(){
+		// 		console.log('创建前',this.a)
+		// 	},
+		// 	created(){
+		// 		console.log('创建后',this.a)
+		// 	},
+		// 	beforeMount(){
+		// 		console.log('渲染前',this.a)
+		// 	},
+		// 	mounted(){
+		// 		this.a=11
+		// 		console.log('渲染后',this.a)
+		// 	},
+		// 	beforeDestroy(){
+		// 		console.log('销毁前',this.a)
+		// 	},
+		// 	destroyed(){
+		// 		console.log('销毁后',this.a)
+		// 	}
+		// })
+		// new Vue({
+		// 	el:'#box',
+		// 	data:{
+		// 		a:33
+		// 	},
+		// 	beforeCreate(){
+		// 		console.log('创建前',this.a)
+		// 	},
+		// 	created(){
+		// 		console.log('创建后',this.a)
+		// 	},
+		// 	beforeMount(){
+		// 		console.log('渲染前',this.a)
+		// 	},
+		// 	mounted(){
+		// 		this.a=22
+		// 		console.log('渲染后',this.a)
+		// 	},
+		// 	beforeDestroy(){
+		// 		console.log('销毁前',this.a)
+		// 	},
+		// 	destroyed(){
+		// 		console.log('销毁后',this.a)
+		// 	}
+		// })
+		new Vue({
+			el:'#box',
+			data:{
+				a:77
+			},
+			beforeCreate(){
+				console.log('创建前',this.a)
+			},
+			created(){
+				console.log('创建后',this.a)
+			},
+			beforeMount(){
+				console.log('渲染前',this.a)
+			},
+			mounted(){
+				this.a=88
+				console.log('渲染后',this.a)
+			},
+			beforeDestroy(){
+				console.log('销毁前',this.a)
+			},
+			destroyed(){
+				console.log('销毁后',this.a)
+			}
+		})
+	</script>
+</body>
+</html>

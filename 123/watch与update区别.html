@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		watch:<input type="text" v-model='value'>
+		updated:<input type="text" v-model='cc'>
+	</div>
+	<script src="./vue.js"></script>
+	<script>
+		new Vue({
+			el:'#box',
+			data:{
+				value:'11',
+				cc:'222'
+			},
+			watch:{
+				value(a,b){
+					console.log(a,b)
+				}
+			},
+			updated(){
+				console.log('updated')
+			}
+		})
+	</script>
+	<!-- <script>
+		new Vue({
+			el:'#box',
+			data:{
+				value:'22',
+				cc:'111'
+			},
+			watch:{
+				value(a,b){
+					console.log(a,b)
+				}
+			},
+			updated(){
+				console.log('updated')
+			}
+		})
+	</script> -->
+	<!-- <script>
+		new Vue({
+			el:'#box',
+			data:{
+				value:'33',
+				cc:'2'
+			},
+			watch:{
+				value(a,b){
+					console.log(a,b)
+				}
+			},
+			updated(){
+				console.log('updated')
+			}
+		})
+	</script> -->
+	<!-- <script>
+		new Vue({
+			el:'#box',
+			data:{
+				value:'44',
+				cc:'33'
+			},
+			watch:{
+				value(a,b){
+					console.log(a,b)
+				}
+			},
+			updated(){
+				console.log('updated')
+			}
+		})
+	</script> -->
+	<!-- <script>
+		new Vue({
+			el:'#box',
+			data:{
+				value:'55',
+				cc:'44'
+			},
+			watch:{
+				value(a,b){
+					console.log(a,b)
+				}
+			},
+			updated(){
+				console.log('updated')
+			}
+		})
+	</script> -->
+</body>
+</html>

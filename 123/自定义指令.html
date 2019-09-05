@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<input type="text" v-model='value'>
+		<div v-lee='value' style="width: 100px;height: 100px;border: 1px solid #ccc"></div>
+	</div>
+	<script src="js/vue.js"></script>
+	<script>
+		new Vue({
+			el:'#box',
+			data:{
+				value:'a'
+			},
+			directives:{
+				lee:{
+					bind(a,b){
+						a.innerHTML=b.value
+						console.log(a,b,'bind')
+					},
+					insert(a,b){
+						console.log(a,b,'insert')
+					},
+					update(a,b){
+						a.innerHTML=b.value
+						console.log(a,b,'update')
+					},
+					componentUpdate(a,b){
+						console.log(a,b,'componentUpdate')
+					},
+					unbind(a,b){
+						console.log(a,b,'unbind')
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>

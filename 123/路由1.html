@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .list {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .list li {
+            float: left;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div style="height: 60px;background:red;">
+            <router-link to="/">
+                李彪
+            </router-link>
+
+            <router-link to="/list">
+                李楠
+            </router-link>
+        </div>
+        <div style="min-height: 500px;background: pink;">
+            <router-view></router-view>
+        </div>
+        <div style="height: 150px;background:blue;">
+
+        </div>
+    </div>
+    <template id="aa">
+        <div>
+            李彪
+        </div>
+    </template>
+    <template id="bb">
+        <div>
+            111
+        </div>
+    </template>
+
+</body>
+<script src="./js/vue.js"></script>
+<script src="./js/vue-router.js"></script>
+<script>
+    var index = {
+        template: '#aa'
+    }
+    var list = {
+        template: '#bb'
+    }
+    var sucai = {
+        template: "#aa1"
+    }
+    var shuiguo = {
+        template: "#bb1"
+    }
+    var routes = [
+        {
+            path: '/',
+            component: index,
+            children: [{
+                path: '/',
+                component: sucai
+            },
+            {
+                path: '/bbb',
+                component: shuiguo
+            }
+            ]
+        },
+        {
+            path: '/list',
+            component: list
+        }
+    ]
+    var router = new VueRouter({
+        routes
+    })
+    new Vue({
+        el: '.box',
+        router
+    })
+
+</script>
+
+</html>

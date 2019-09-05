@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+
+<body>
+	<div id="box">
+		<lee></lee>
+		<lee1></lee1>
+	</div>
+	<template id="lee">
+		<div @click="btn">
+			兄弟1
+			{{num}}
+		</div>
+	</template>
+	<template id="lee1">
+		<div @click="btn">
+			兄弟2
+			{{num}}
+		</div>
+	</template>
+</body>
+<script src="vue.js"></script>
+<script>
+	var bus = new Vue()//兄弟级传值
+	Vue.component('lee', {
+		template: '#lee',
+		data() {
+			return {
+				num: 0
+			}
+		},
+		mounted() {
+			bus.$on('lee1', (a) => {
+				this.num = a
+			})
+		},
+		methods: {
+			btn() {
+				this.num++
+				bus.$emit('lee', this.num)
+			}
+		}
+	})
+	Vue.component('lee1', {
+		template: '#lee1',
+		data() {
+			return {
+				num: 0
+			}
+		},
+		mounted() {
+			bus.$on('lee', (a) => {
+				this.num = a
+				console.log(a)
+			})
+		},
+		methods: {
+			btn() {
+				this.num++
+				bus.$emit('lee1', this.num)
+			}
+		}
+	})
+	new Vue({
+		el: "#box",
+		data: {
+			num: 0,
+		}
+
+	})
+</script>
+
+</html>
