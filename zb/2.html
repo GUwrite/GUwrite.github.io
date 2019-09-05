@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        [v-cloak]{
+            display: none;
+        }
+        .csgoing-enter,
+        .csgoing-leave-to {
+            opacity: 0;
+            top: 120px !important;
+        }
+        .csgoing-enter-active,
+        .csgoing-leave-active {
+            transition: all .3s;
+        }
+        .cslongyo-enter,
+        .cslongyo-leave-to {
+            opacity: 0;
+            left: -120px !important;
+        }
+        .cslongyo-enter-active,
+        .cslongyo-leave-active {
+            transition: all .3s;
+        }
+        .togloe-enter,
+        .togloe-leave-to {
+            opacity: 0;
+            top: 120px !important;
+        }
+        .togloe-enter-active,
+        .togloe-leave-active {
+            transition: all .3s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <no1></no1>
+    </div>
+    <template id="no1">
+        <div style="position: relative;">
+            <div style="line-height: 60px;text-align: center;background: #000;color: #fff;" @click="c_csgoing">
+                首页
+            </div>
+            <transition :name="t_t1">
+                <div style="position: absolute;top: 60px;left: 0;width: 100%;background: #000;z-index: 2;"
+                    v-show="op">
+                    <div v-for="i in arr"
+                        style="color: #fff;line-height: 50px;text-align: center;position: relative;">
+                        {{i.clas}} <span style="position: absolute;top: 0;right: 40px; font-size: 26px;" v-if="i.arr.length"
+                            @click="c_cslongyo(i.arr)">></span>
+                    </div>
+                </div>
+            </transition>
+            <transition name="togloe">
+                <div style="position: absolute;top: 60px;left: 0;width: 100%;background: #000;" v-show="opne">
+                    <div style="color: #fff;line-height: 50px;text-align: center;position: relative;" @click="c_togloe">
+                        返回上一级
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </template>
+</body>
+<script src="./vue.js"></script>
+<script>
+    Vue.component('no1', {
+        template: '#no1',
+        methods: {
+            c_csgoing() {
+                if(this.opne){
+                    this.opne = false
+                }else {
+                    this.t_t1 = 'csgoing'
+                    this.op = !this.op
+                    this.innerHTML='关闭'
+                }
+            },
+            c_cslongyo(arr){
+                this.t_t1 = 'cslongyo'
+                this.op = false
+                this.z_arr = arr
+                setTimeout(() => {
+                    this.opne = true
+                }, 200)
+            },
+            c_togloe() {
+                this.opne = false
+                this.op = true
+            }
+        },
+        data() {
+            return {
+                op: false,
+                opne: false,
+                t_t1: 'csgoing',
+                z_arr: '',
+                arr: [
+                    { clas: '首页', arr: [] },
+                    { clas: '软件产品', arr: ['csgoing', 'cslongyo'] },
+                    { clas: 'togloe', arr: ['csgoing'] },
+                    { clas: 'no4', arr: [] },
+                ]
+            }
+        }
+    })
+    new Vue({
+        el: ".box"
+    })
+</script>
+
+</html>
