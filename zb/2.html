@@ -74,8 +74,8 @@
 <script>
     Vue.component('no1', {
         template: '#no1',
-        methods: {
-            c_csgoing() {
+        methods:{
+            c_csgoing(){
                 if(this.opne){
                     this.opne = false
                 }else{
@@ -92,21 +92,21 @@
                     this.opne = true
                 }, 200)
             },
-            c_togloe() {
+            c_togloe(){
                 this.opne = false
                 this.op = true
             }
         },
-        data() {
-            return {
-                op: false,
-                opne: false,
-                t_t1: 'csgoing',
-                z_arr: '',
-                arr: [
+        data(){
+            return{
+                op:false,
+                opne:false,
+                t_t1:'csgoing',
+                z_arr:'',
+                arr:[
                     { clas: '首页', arr: [] },
-                    { clas: '软件产品', arr: ['csgoing', 'cslongyo'] },
-                    { clas: 'togloe', arr: ['csgoing'] },
+                    { clas: '软件产品', arr: [] },
+                    { clas: 'togloe', arr: [] },
                     { clas: 'no4', arr: [] },
                 ]
             }
