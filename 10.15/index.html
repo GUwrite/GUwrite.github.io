@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<div id="box">
+			<no1 v-for="i in 10" :b_num="i*88" b_title="hhahh" ></no1>
+			<no1 b_num=190 b_title="hhahh"></no1>
+		</div>
+		<template id="no1">
+			<div style="text-align: center;">
+				<div style="font-size: 60px;font-family: courier new;color: #3c3c3c;">
+					{{num}}
+				</div>
+				<div>
+					{{title}}
+				</div>
+			</div>
+		</template>
+	</body>
+	<script src="vue.js"></script>
+	<script>
+		Vue.component('no1', {
+			template: '#no1',
+			props:['b_num','b_title'],
+			data() {
+				return {
+					num: 0,
+					title: this.b_title
+				}
+			},
+			mounted() {
+				var time = setInterval(() => {
+					this.num++
+						if(this.num >= this.b_num) {
+							this.num = this.b_num
+							clearInterval(time)
+						}
+				}, 1000/this.b_num)
+			}
+		})
+		new Vue({
+			el: "#box"
+		})
+	</script>
+
+</html>

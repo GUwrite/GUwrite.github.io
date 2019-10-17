@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="./node_modules/swiper/css/swiper.min.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		.opn:hover .pingpmah {
+			transform: scale(1);
+			transition: all 0.8s;
+		}
+
+
+		.pics_mubu {
+			width: 100vw;
+			height: 100%;
+			background: rgba(0, 0, 0, .8);
+			z-index: 2;
+			position: fixed;
+			left: 0;
+			top: 0;
+			transition: 1s;
+			display: none;
+		}
+
+		.photoes {
+			position: absolute;
+			width: 960px;
+			height: 460px;
+			left: 50%;
+			margin-left: -480px;
+			top: 50px;
+			transition: .8s;
+		}
+
+		.photoes img {
+			width: 100%;
+			height: 100%;
+			transition: .8s;
+		}
+
+		.pics_mubu button {
+			width: 40px;
+			height: 40px;
+			background: #000;
+			position: absolute;
+			top: 0;
+			right: 20px;
+			text-align: center;
+			line-height: 40px;
+			border: none;
+			outline: none;
+			color: #fff;
+			font-size: 36px;
+		}
+
+		.play_pause {
+			width: 40px;
+			height: 40px;
+			background: #000;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-left: -20px;
+			text-align: center;
+			line-height: 40px;
+			border: none;
+			outline: none;
+			color: #fff;
+			font-size: 36px;
+			cursor: pointer;
+		}
+
+		.pics_mubu .prev {
+			top: 50%;
+			margin-top: -20px;
+			left: 0;
+			line-height: 40px;
+			vertical-align: middle;
+		}
+
+		.pics_mubu .next {
+			top: 50%;
+			margin-top: -20px;
+			line-height: 40px;
+			vertical-align: middle;
+		}
+
+		.list_photoes {
+			position: absolute;
+			width: 960px;
+			height: 90px;
+			left: 50%;
+			margin-left: -480px;
+			bottom: 20px;
+			transition: .8s;
+		}
+
+		.list_photoes img {
+			width: 60px;
+			height: 60px;
+			float: left;
+			transition: .8s;
+			vertical-align: bottom;
+			position: relative;
+			z-index: 10;
+		}
+
+		.list_photoes img:hover {
+			/* width: 90px;
+		height: 90px; */
+			transform: scale(1.5);
+		}
+
+		.gallery-top {
+			height: 80%;
+			width: 100%;
+		}
+
+		.gallery-thumbs {
+			height: 20%;
+			box-sizing: border-box;
+			padding: 10px 0;
+		}
+
+		.gallery-thumbs .swiper-slide {
+			height: 100%;
+			opacity: 0.4;
+		}
+
+		.gallery-thumbs .swiper-slide-thumb-active {
+			opacity: 1;
+		}
+
+		.b_i {
+			width: 40px;
+			height: 40px;
+			float: right;
+		}
+
+		.transition-box {
+			margin-bottom: 10px;
+			width: 200px;
+			height: 100px;
+			border-radius: 4px;
+			background-color: #409EFF;
+			text-align: center;
+			color: #fff;
+			padding: 40px 20px;
+			box-sizing: border-box;
+			margin-right: 20px;
+		}
+
+		.tee_nav {
+			overflow: hidden;
+			height: 80px;
+			vertical-align: middle;
+			text-align: right;
+			margin-right: 200px;
+			font-size: 16px;
+		}
+
+		.tee_nav li {
+			display: inline-block;
+			line-height: 80px;
+			margin: 0 20px;
+			color: #878787;
+			font-size: 15px;
+			cursor: pointer;
+		}
+
+		.titlea {
+			width: 100%;
+			line-height: 50px;
+			text-align: center;
+			font-size: 24px;
+			font-weight: normal;
+			margin-top: 80px;
+			margin-bottom: 20px;
+		}
+
+		.b_txt {
+			width: 100%;
+			line-height: 26px;
+			text-align: center;
+			font-size: 16px;
+			color: #878787;
+		}
+
+		.i_img {
+			width: 100%;
+			margin: 0 auto;
+			overflow: hidden;
+			padding-top: 37px;
+			box-sizing: border-box;
+		}
+
+		.i_img li {
+			float: left;
+			font-size: 0;
+			cursor: pointer;
+			margin-right: 10px;
+			margin-bottom: 10px;
+		}
+
+		.i_img li img {
+			width: 280px;
+			height: 280px;
+		}
+
+		.i_img li:nth-child(4) {
+			margin-right: 0;
+		}
+
+		.i_img li:nth-child(8) {
+			margin-right: 0;
+		}
+
+		.h_t {
+			color: #85bf41 !important
+		}
+
+		.pingpmah {
+			transform: scale(0.8);
+			transition: all 0.6s;
+		}
+
+		.yjr_lpdasd {
+			height: 2px;
+			background: #ccc;
+			position: relative;
+			width: 100%;
+		}
+
+		.yjr_lpdasd1 {
+			width: 0;
+			height: 2px;
+			background: #90af6b;
+			position: absolute;
+			left: 0;
+			top: 0;
+			transition: all 0.6s;
+		}
+
+		.opn:hover .yjr_lpdasd1 {
+			width: 100%;
+			transition: all 0.6s;
+		}
+
+		.opn:hover .yjr_qiandasd span {
+			color: #90af6b;
+		}
+
+		.opn:hover .yjr_tt1 a {
+			color: #90af6b;
+		}
+
+		.dndsahdsa {
+			height: 39px;
+			margin-top: 20px;
+		}
+
+		.dndsahdsa a {
+			font-size: 14px;
+			padding-left: 25px;
+			padding-right: 25px;
+			padding-top: 8px;
+			padding-bottom: 8px;
+			border-width: 2px;
+			border-color: #90af6b;
+			background-color: #90af6b;
+			color: #fff;
+		}
+
+		.kkjkaa {
+			height: 115px;
+			line-height: 28px;
+			font-size: 14px;
+		}
+
+		.ooplr {
+			width: 648px;
+			float: right;
+			padding: 50px;
+			box-sizing: border-box;
+		}
+
+		.oopll {
+			width: 521px;
+			height: 274.4px;
+			float: left;
+		}
+
+		.oopll img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.lmnbza {
+			height: 294.4px;
+			margin-bottom: 0;
+			border-radius: 0px;
+			border-top: 10px solid rgba(255, 255, 255, 1);
+			border-bottom: 10px solid rgba(255, 255, 255, 1);
+			border-left: 10px solid rgba(255, 255, 255, 1);
+			border-right: 10px solid rgba(255, 255, 255, 1);
+			color: #808080;
+			box-sizing: border-box;
+			overflow: hidden;
+			background: #fff;
+		}
+
+		.xiaob {
+			font-size: 13px;
+			font-weight: normal;
+			font-style: normal;
+			color: #ffffff;
+			display: block;
+		}
+
+		.xiaoa {
+			font-family: 微软雅黑;
+			font-size: 26px;
+			font-weight: normal;
+			font-style: normal;
+			color: #ffffff;
+			padding: 0 0 5px 0;
+			display: block;
+			padding: 0 0 5px 0;
+			/* vertical-align: bottom; */
+		}
+
+		.heueqq {
+			margin-bottom: 40px;
+			padding-top: 10px;
+			padding-bottom: 0;
+			padding-right: 15px;
+			padding-left: 0;
+			text-align: center;
+		}
+
+		.knaadffsdaa {
+			width: 1280px;
+			margin: 0 auto;
+			padding: 0 40px;
+			box-sizing: border-box;
+			min-height: 30px;
+		}
+
+		.yjr_dasa {
+			width: 100%;
+			min-height: 660px;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-position: center center;
+			background-size: cover;
+			background-image: url('https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvYTMxNGNjMzEzM2JhMGRkOTE2NTA0NmYwYTZjMDlmZjcuanBn.jpg');
+			position: relative;
+			padding: 110px 0 40px;
+			box-sizing: border-box;
+		}
+
+		.yjrsp {
+			width: 150px;
+			height: 60px;
+		}
+
+		.yjrsp img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.yjr_lp {
+			width: 15.766667%;
+			height: 60px;
+			float: left;
+			margin-bottom: 10px;
+			padding-right: 10px;
+		}
+
+		.yjr_flow {
+			padding: 0 40px;
+			overflow: hidden;
+		}
+
+		.yjr_box {
+			max-width: 1280px;
+			margin: 0px auto;
+			padding-top: 50px;
+		}
+
+		.logss {
+			width: 100%;
+			height: 170px;
+		}
+
+		.logssone {
+			width: 15%;
+			height: 200px;
+			line-height: 200px;
+			padding-top: 40px;
+			padding-left: 60px;
+			box-sizing: border-box;
+			float: left;
+		}
+
+		.logssone img {
+			width: 150px;
+			height: 60px;
+		}
+
+		.yjr_hha a {
+			font-size: 30px;
+			padding-left: 25px;
+			padding-right: 25px;
+			padding-top: 1px;
+			padding-bottom: 1px;
+			border-width: 2px;
+			border-color: #90af6b;
+			background-color: #90af6b;
+			color: #fff;
+		}
+
+		.yjr_hha {
+			margin-top: 25px;
+			margin-bottom: 0;
+			padding-top: 9px;
+			padding-bottom: 0;
+			padding-right: 0;
+			padding-left: 0;
+			text-align: center;
+		}
+
+		.yjr_paa span {
+			width: 100%;
+			font-family: 微软雅黑;
+			font-size: 24px;
+			font-weight: normal;
+			font-style: normal;
+			color: #232323;
+			padding: 0 0 5px 0;
+			display: block;
+			padding: 0 0 5px 0;
+		}
+
+		.yjr_xicha {
+			width: 100%;
+			height: 80px;
+			padding: 10px 15px;
+			box-sizing: border-box;
+			text-align: center;
+		}
+
+		.yjr_qiandasd {
+			padding-top: 10px;
+			padding-bottom: 15px;
+			padding-left: 0px;
+			padding-right: 0px;
+			text-align: center;
+		}
+
+		.yjr_qiandasd span {
+			color: #555555;
+			font-size: 16px;
+			font-family: sans-serif;
+		}
+
+		.yjr_tt1 {
+			padding-bottom: 15px;
+			font-weight: normal;
+			color: #555555;
+			line-height: 16px;
+			vertical-align: top;
+			text-align: center;
+			width: 100%;
+			/* border-bottom: 1px solid #555; */
+		}
+
+		.yjr_tt1 a {
+			color: #555555;
+			font-size: 16px;
+			line-height: 22px
+		}
+
+		img {
+			vertical-align: top;
+		}
+
+		.yjr_tt {
+			padding-bottom: 10px;
+		}
+
+		.yjr_tt img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.opn {
+			max-width: 33.27%;
+			margin-bottom: 0px;
+			border-bottom: 1px solid transparent;
+			padding: 15px;
+			animation-delay: 0.2s;
+			animation-name: qfyfadeInUp;
+			visibility: visible;
+			float: left;
+			box-sizing: border-box;
+		}
+
+		.yjr_op {
+			box-sizing: border-box;
+			float: left;
+		}
+
+		.yjr_ooa {
+			max-width: 1220px;
+			padding: 40px 10px;
+			box-sizing: border-box;
+			margin: 0 auto;
+			overflow: hidden;
+
+		}
+
+		.yjrneei {
+			min-height: 40px;
+			background-color: #f7f7f7;
+		}
+
+		a {
+			color: #878787;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.yjrlbt1 {
+			width: 100%;
+			height: 100%;
+		}
+
+		.yjrlbt1 img {
+			width: 100%;
+			height: 100%;
+		}
+
+		img {
+			vertical-align: top;
+		}
+
+		.siao img {
+			position: relative;
+			height: 100%;
+		}
+
+		.siao img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.swiper-container {
+			width: 100%;
+			height: 100%;
+		}
+
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			background: #fff;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+
+
+		}
+
+		.dsajdosa {
+			width: 710px;
+			height: 540px;
+			background: #fff;
+			padding: 40px 20px 20px;
+			box-sizing: border-box;
+			border-radius: 5px;
+			overflow: hidden;
+		}
+
+		.oopdak {
+			left: 50%;
+			top: 50%;
+			margin-top: -270px;
+		}
+
+		.joasjdas {
+			max-width: 1200px;
+			padding: 0 5px;
+			box-sizing: border-box;
+			margin: 0 auto;
+			height: 25.6px;
+			line-height: 25.6px;
+		}
+
+		.yjr_kakdoas {
+			height: 45.6px;
+			padding: 10px 0;
+			box-sizing: border-box;
+			background: #fff;
+		}
+
+		.yjrlaaa {
+			width: 100px;
+			height: 100px;
+		}
+
+		.yjrlaaa img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.yjrdsaa {
+			text-align: center;
+			padding-top: 8px;
+		}
+
+		.yjrdsaa span {
+			font-size: 14px;
+		}
+
+		.rjrwema {
+			float: right;
+			padding-right: 18px;
+		}
+
+		.opldsapdsa {
+			float: right;
+			padding-right: 40px;
+		}
+
+		.topaa {
+			line-height: 1.6em;
+			background-position: left top;
+			background-repeat: no-repeat;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding-top: 0;
+			padding-bottom: 12px;
+			padding-right: 0;
+			padding-left: 0;
+			border-radius: 0px;
+		}
+
+		.yjr_dihi {
+			width: 316px;
+			float: left;
+			padding: 0 3px;
+			box-sizing: border-box;
+		}
+
+		.yjrguanzhu span {
+			color: rgb(93, 93, 93);
+			vertical-align: middle;
+			font-size: 16px;
+		}
+
+		.yjrguanzhu {
+			width: 256.75px;
+			height: 64px;
+			float: left;
+			padding: 0 3px;
+			box-sizing: border-box;
+		}
+
+		.yjr_s_c {
+			font-family: verdana;
+			font-size: 13px;
+			font-weight: normal;
+			font-style: normal;
+			color: #969696;
+			display: block;
+			/* vertical-align: bottom; */
+		}
+
+		.yjr_s_d {
+			font-family: 微软雅黑;
+			font-size: 26px;
+			font-weight: normal;
+			font-style: normal;
+			color: #666666;
+			padding: 0 0 5px 0;
+			display: block;
+			padding: 0 0 5px 0;
+			/* vertical-align: bottom; */
+		}
+
+		.ylianxi {
+			width: 207px;
+			height: 56px;
+			float: left;
+			padding: 0 3px;
+			box-sizing: border-box;
+		}
+
+		.yjr_you {
+			max-width: 400px;
+			padding: 0 5px;
+			box-sizing: border-box;
+			height: 132.8px;
+			overflow: hidden;
+			float: right;
+		}
+
+		.yjr_zuo {
+			padding: 0 5px;
+			box-sizing: border-box;
+			height: 110.4px;
+			overflow: hidden;
+			float: left;
+		}
+
+		.yjr_oopn {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 30px 0;
+			box-sizing: border-box;
+			height: 192.8px;
+			overflow: hidden;
+		}
+
+		.yjr_footer {
+			padding-top: 40px;
+			width: 100%;
+			min-height: 50px;
+			background-color: #f3f3f3;
+		}
+
+		.yjr_jsaawr {
+			height: 83px;
+			line-height: 1.5;
+			color: #808080;
+			font-size: 14px;
+			padding-top: 17px;
+		}
+
+		.yjr_kjhaga {
+			height: 24.8px;
+			line-height: 24.8px;
+			text-align: center;
+			color: #808080;
+			font-size: 18px;
+			padding-top: 17px;
+		}
+
+		.yjr_plousaa img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.yjr_plousaa {
+			width: 360px;
+			height: 237px;
+		}
+
+		.yjr_nxv1 {
+			max-width: 360px;
+			min-height: 400px;
+			transition: all 0.35s;
+		}
+
+		.yjr_ladjaos {
+			width: 33%;
+			padding: 0 5px;
+			box-sizing: border-box;
+			float: left;
+		}
+
+		.yjr_dasdas {
+			padding: 0 40px;
+			box-sizing: border-box;
+			max-width: 1280px;
+			margin: 30px auto 0;
+			min-height: 400px;
+		}
+
+		.yjr_weibu {
+			height: 566px;
+		}
+
+		.optiomda {
+			max-width: 1160px;
+			margin: 0 auto;
+			padding: 80px 0 60px 0;
+			border-bottom: rgba(152, 54, 54, 0.5);
+		}
+
+		a {
+			color: #808080;
+		}
+
+		.jodasd {
+			line-height: 1.5em;
+			padding-top: 22px;
+			color: #808080;
+			font-size: 16px;
+		}
+
+		.toutsad {
+			font-family: 微软雅黑;
+			font-size: 24px;
+			font-weight: normal;
+			font-style: normal;
+			color: #232323;
+			padding: 0 0 5px 0;
+			display: block;
+		}
+
+		.hjadsa {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 56px 5px 0;
+			box-sizing: border-box;
+			border-radius: 0px;
+			border-top: 1px solid rgba(224, 224, 224, 0.5);
+			border-bottom: 0px solid rgba(224, 224, 224, 0.5);
+			border-left: 0px solid rgba(224, 224, 224, 0.5);
+			border-right: 0px solid rgba(224, 224, 224, 0.5);
+			text-align: center;
+		}
+
+		.jodsajdas {
+			max-width: 1280px;
+			padding: 0 40px;
+			margin: 0 auto;
+		}
+
+		.hetea {
+			height: 218px;
+		}
+
+		.josadjas {
+			max-width: 1280px;
+			padding: 0 40px;
+			box-sizing: border-box;
+			margin: 0 auto;
+		}
+
+		.paodong {
+			height: 232px;
+			/* background: red; */
+		}
+
+		.koasdas {
+			line-height: 1.6em;
+			background-position: left top;
+			background-repeat: no-repeat;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding-top: 22px;
+			padding-bottom: 0;
+			padding-right: 0;
+			padding-left: 0;
+			border-radius: 0px;
+			text-align: center;
+			font-size: 16px;
+			color: #808080;
+		}
+
+		.naaa {
+			font-family: 微软雅黑;
+			font-size: 24px;
+			font-weight: normal;
+			font-style: normal;
+			color: #232323;
+			padding: 0 0 5px 0;
+			text-align: center;
+		}
+
+		.lkdasl {
+			height: 80px;
+		}
+
+		.yjr_nskadas {
+			width: 100%;
+			height: 205px;
+			margin-bottom: 15px;
+		}
+
+		.yjr_nskadas img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.ak1aa {
+			height: 234px;
+			padding-top: 20px;
+			box-sizing: border-box;
+
+		}
+
+		.kjpoaksao {
+			max-width: 1160px;
+			padding: 0 10px;
+			height: 214px;
+			margin: 0 auto;
+			border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+			box-sizing: border-box;
+		}
+
+		.jkasa {
+			margin-top: 0;
+			margin-bottom: 0;
+			padding-top: 10px;
+			padding-bottom: 0;
+			padding-right: 15px;
+			padding-left: 0;
+		}
+
+
+		.yjrlaaa {
+			width: 100px;
+			height: 100px;
+		}
+
+		.yjrlaaa img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.yjrdsaa {
+			text-align: center;
+			padding-top: 8px;
+		}
+
+		.yjrdsaa span {
+			font-size: 14px;
+		}
+
+		.rjrwema {
+			float: right;
+			padding-right: 18px;
+		}
+
+		.opldsapdsa {
+			float: right;
+			padding-right: 40px;
+		}
+
+		.topaa {
+			line-height: 1.6em;
+			background-position: left top;
+			background-repeat: no-repeat;
+			margin-top: 0;
+			margin-bottom: 0;
+			padding-top: 0;
+			padding-bottom: 12px;
+			padding-right: 0;
+			padding-left: 0;
+			border-radius: 0px;
+		}
+
+		.yjr_dihi {
+			width: 316px;
+			float: left;
+			padding: 0 3px;
+			box-sizing: border-box;
+		}
+
+		.yjrguanzhu span {
+			color: rgb(93, 93, 93);
+			vertical-align: middle;
+			font-size: 16px;
+		}
+
+		.yjrguanzhu {
+			width: 256.75px;
+			height: 64px;
+			float: left;
+			padding: 0 3px;
+			box-sizing: border-box;
+		}
+
+		.yjr_s_c {
+			font-family: verdana;
+			font-size: 13px;
+			font-weight: normal;
+			font-style: normal;
+			color: #969696;
+			display: block;
+			/* vertical-align: bottom; */
+		}
+
+		.yjr_s_d {
+			font-family: 微软雅黑;
+			font-size: 26px;
+			font-weight: normal;
+			font-style: normal;
+			color: #666666;
+			padding: 0 0 5px 0;
+			display: block;
+			padding: 0 0 5px 0;
+			/* vertical-align: bottom; */
+		}
+
+		.ylianxi {
+			width: 207px;
+			height: 56px;
+			float: left;
+			padding: 0 3px;
+			box-sizing: border-box;
+		}
+
+		.yjr_you {
+			max-width: 400px;
+			padding: 0 5px;
+			box-sizing: border-box;
+			height: 132.8px;
+			overflow: hidden;
+			float: right;
+		}
+
+		.yjr_zuo {
+			padding: 0 5px;
+			box-sizing: border-box;
+			height: 110.4px;
+			overflow: hidden;
+			float: left;
+		}
+
+		.yjr_oopn {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 30px 0;
+			box-sizing: border-box;
+			height: 192.8px;
+			overflow: hidden;
+		}
+
+		.yjr_footer {
+			padding-top: 40px;
+			width: 100%;
+			min-height: 50px;
+			background-color: #f3f3f3;
+		}
+
+		.yjr_pkj {
+			padding: 10px 15px 10px 0;
+			height: 50px;
+			line-height: 30px;
+			text-align: right;
+			box-sizing: border-box;
+		}
+
+		.yjr_span {
+			display: inline-block;
+			margin-right: 10px;
+			color: #878787;
+			vertical-align: middle;
+		}
+
+		.yjr_span a {
+			padding: 5px;
+			box-sizing: border-box;
+			vertical-align: middle;
+		}
+
+		.y_a {
+			font-size: 22px;
+		}
+
+		.y_m {
+			font-size: 22px;
+		}
+
+		.y_t {
+			font-size: 24px;
+		}
+
+		.y_x {
+			font-size: 18px;
+		}
+
+		.yjr_list {
+			float: right;
+		}
+
+		.yjr_plp {
+			width: 100%;
+			height: 50px;
+			padding: 10px 20px;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+
+		.yjr_list .rjr_li {
+			display: inline-block;
+			color: #878787;
+			padding: 0 6px;
+			line-height: 30px;
+			box-sizing: border-box;
+			text-align: right;
+			font-size: 15px;
+		}
+
+		.yjrmr2 {
+			margin-right: 12px;
+		}
+
+		.yjrmar {
+			margin: 0 14px;
+		}
+
+		.yjr_logo {
+			width: 80px;
+			height: 50px;
+		}
+
+		.yjr_logo img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.rjr_l {
+			width: 15%;
+			float: left;
+			height: 50px;
+		}
+
+		.rjr_z {
+			width: 70%;
+			float: left;
+			height: 50px;
+			overflow: hidden;
+		}
+
+		.rjr_r {
+			width: 15%;
+			float: left;
+			height: 50px;
+		}
+
+		.yjrheader {
+			width: 100%;
+			position: relative;
+			z-index: 999;
+		}
+
+		.yjrlc {
+			width: 100%;
+			padding: 15px 40px;
+			margin: 0 auto;
+			height: 80px;
+			position: absolute;
+			top: 0;
+			box-sizing: border-box;
+			overflow: hidden;
+		}
+
+		#vacNum {
+			overflow: hidden;
+		}
+
+		.vacN_item {
+			float: left;
+			width: 25%;
+			text-align: center;
+			border-left: 1px solid rgba(228, 228, 228, 1);
+			box-sizing: border-box;
+		}
+
+		.vacN_item:nth-of-type(1) {
+			border-left: none;
+		}
+
+		.vacN_item>p:nth-of-type(1) {
+			font-size: 60px;
+			font-family: courier new;
+			color: #3c3c3c;
+		}
+
+		.vacN_item>p:nth-of-type(2) {
+			color: rgb(147, 147, 150);
+			font-size: 14px;
+			text-align: center;
+		}
+
+
+		.yjr_nxv1:hover {
+			margin-top: -20px;
+			transition: all 0.35s;
+		}
+
+
+
+		.czhmap {
+			max-width: 1200px;
+			box-sizing: border-box;
+			padding: 0 5px;
+			margin: 0 auto;
+			min-height: 394px;
+		}
+
+		.jodajda {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 10vh 0;
+			box-sizing: border-box;
+		}
+
+		.lplpad {
+			height: 486px;
+			box-sizing: border-box;
+		}
+
+		.ojdasod span {
+			font-size: 14px;
+			color: #808080;
+		}
+
+		.ojdasod {
+			height: 24px;
+			line-height: 24px;
+			text-align: center;
+			padding-top: 7px;
+		}
+
+		.jodajs .nbnzzd {
+			font-family: 微软雅黑;
+			font-size: 20px;
+			font-weight: normal;
+			font-style: normal;
+			color: #333333;
+			display: block;
+		}
+
+		.jodas {
+			margin-top: 10px;
+			margin-bottom: 0;
+			padding-top: 17px;
+			padding-bottom: 0;
+			padding-right: 0;
+			padding-left: 0;
+			text-align: center;
+		}
+
+		.rjrimsag {
+			width: 80px;
+			height: 80px;
+			margin: 0 auto;
+		}
+
+		.rjrimsag img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.rjidsa {
+			width: 33.33%;
+			padding: 0 6px;
+			box-sizing: border-box;
+			float: left;
+		}
+
+		.jodajs {
+			max-width: 1280px;
+			box-sizing: border-box;
+			padding: 10vh 40px 0;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+
+		.okpiua {
+			height: 207.75px;
+		}
+
+		img {
+			vertical-align: top;
+		}
+
+		.czhubaa span {
+			font-size: 14px;
+			color: #808080;
+			line-height: 1.8em;
+			box-sizing: border-box;
+			padding: 0 5px;
+			display: block;
+		}
+
+		.czhubaa {
+			max-width: 800px;
+			padding: 0 40px;
+			margin: 0 auto;
+			box-sizing: border-box;
+			height: 49.6px;
+			text-align: center;
+		}
+
+		.dasddas {
+			height: 92px;
+			padding-top: 10vh;
+			box-sizing: border-box;
+			/* padding-bottom: 20px; */
+		}
+
+
+		.item:hover button {
+			border: green;
+			color: green;
+		}
+
+		.item:hover h6 {
+			color: green;
+		}
+
+		.item:hover .czh_bor div {
+			transition: 1s;
+			width: 100%;
+			background-color: green;
+		}
+
+		.czh_bor {
+			width: 100%;
+			height: 1px;
+			background-color: #eee;
+			position: relative;
+		}
+
+		.czh_bor div {
+			width: 0;
+			position: absolute;
+			left: 0;
+			height: 1px;
+			top: 0;
+		}
+
+		.item button {
+			outline: none;
+			border: none;
+			font-size: 16px;
+			padding: 5px 10px;
+		}
+
+		.item p {
+			font-size: 16px;
+			color: #8e8e8e;
+			padding: 10px 0 15px 0;
+		}
+
+		.item h6 {
+			font-size: 16px;
+			line-height: 22px;
+			color: #555;
+			padding-bottom: 15px;
+		}
+
+		.item img {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+
+		.item {
+			width: 100%;
+			height: auto;
+		}
+
+		.cont {
+			float: left;
+			width: 20%;
+			padding: 0 10px;
+			box-sizing: border-box;
+			margin-bottom: 20px;
+			margin-top: 10px;
+			padding-top: 20px;
+		}
+
+		.cent {
+			width: 100%;
+			overflow: hidden;
+			padding-bottom: 50px;
+		}
+
+		.list {
+			overflow: hidden;
+			height: 86px;
+			background-color: rgba(244, 244, 244, 0.5);
+		}
+
+		.list ul {
+			float: right;
+			height: 86px;
+			line-height: 66px;
+			font-size: 15px;
+			padding-right: 40px;
+		}
+
+		.list li {
+			float: left;
+			color: #878787;
+			padding: 10px 0 10px 0;
+			text-align: center;
+			margin: 0 20px;
+		}
+
+
+		.yjr_xw_bigt {
+			height: 100%;
+			width: 100%;
+		}
+
+		.yjr_xw_bigt img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.opcity {
+			height: 80px;
+		}
+
+		.new img {
+			width: 100%;
+			height: 100%;
+		}
+
+		.xw li {
+			height: 40px;
+			border-bottom: 1px solid #ccc;
+			line-height: 34px;
+			padding-left: 20px;
+		}
+
+		.xw li:nth-child(3) {
+			border-bottom: none;
+		}
+
+		.xw li:hover {
+			color: #90af6b;
+		}
+
+		.imgbox:hover .img {
+			transform: scale(1.2);
+			transition: all 0.65s;
+		}
+
+		.img {
+			transition: 0.6s;
+			transform: scale(1);
+		}
+	</style>
+</head>
+
+<body>
+	<div id="box">
+		<div class="yjrheader">
+			<div class="yjrlc">
+				<div class="rjr_l">
+					<div class="yjr_logo">
+						<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvZjc0MTI0MDFiMDZjZjdjYmI4OTg5MTBjMTE2YzZlNzYucG5n.png"
+							alt="">
+					</div>
+				</div>
+				<div class="rjr_z">
+					<div class="yjr_plp">
+						<ul class="yjr_list">
+							<li class="rjr_li yjrmr2">
+								<a href="#/">首页</a>
+							</li>
+							<li class="rjr_li yjrmar">
+								<a href="#/no2">关于</a>
+							</li>
+							<li class="rjr_li yjrmar">
+								<a href="#/no3">茶叶</a>
+							</li>
+							<li class="rjr_li yjrmar">
+								<a href="#/no4">基地</a>
+							</li>
+							<li class="rjr_li yjrmar">
+								<a href="#/no5">新闻</a>
+							</li>
+							<li class="rjr_li yjrmar">
+								<a href="#/no6">联系</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- <div class="rjr_r">
+					<div class="yjr_pkj">
+						<span class="yjr_span">
+							<a href="javascript:;" @click="kuang=!kuang" class="iconfont y_m">
+								&#xe605;
+							</a>
+						</span>
+						<span class="yjr_span">
+							<a href="javascript:;" @click="popupVisible=!popupVisible" class="iconfont y_t">
+								&#xe604;
+							</a>
+						</span>
+						<span class="yjr_span">
+							<a href="avascript:;" id="guc" class="iconfont y_x">
+								&#xe67c;
+							</a>
+						</span>
+					</div>
+				</div> -->
+			</div>
+		</div>
+		<div style="min-height: 500px;">
+			<router-view></router-view>
+		</div>
+		<div class="yjr_footer">
+			<div class="yjr_oopn">
+				<div class="yjr_zuo">
+					<div class="ylianxi">
+						<span class="yjr_s_d">联系</span>
+						<span class="yjr_s_c">Contact</span>
+					</div>
+					<div class="yjrguanzhu">
+						<span>关注我们</span>
+					</div>
+					<div class="yjr_dihi">
+						<div class="topaa">
+							<span style="font-size:16px;color: rgb(93, 93, 93);">起飞页自助建站平台</span>
+						</div>
+						<div class="ppaaa" style="padding-bottom:6px;">
+							<span style="font-size:14px;color: #969696;">
+								地址：苏州市建外SOHO东区2号楼
+							</span>
+						</div>
+						<div class="ppaaa" style="padding-bottom:6px;">
+							<span style="font-size:14px;color: #969696;">
+								邮编：100000
+							</span>
+						</div>
+						<div class="ppaaa" style="padding-bottom:6px;">
+							<span style="font-size:14px;color: #969696;">
+								电话：010-69557550
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="yjr_you">
+					<div class="rjrwema">
+						<div class="yjrlaaa">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOC8wOC82MWM1NDU1YWZjYzI0ZWIyZmNjZWQ5OTdiYzAxYTYwYy0xMDB4MTAwLnBuZw_p_p100_p_3D_p_p100_p_3D.png"
+								alt="">
+						</div>
+						<div class="yjrdsaa">
+							<span>微博</span>
+						</div>
+					</div>
+					<div class="opldsapdsa">
+						<div class="yjrlaaa">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOC8wOC82MWM1NDU1YWZjYzI0ZWIyZmNjZWQ5OTdiYzAxYTYwYy0xMDB4MTAwLnBuZw_p_p100_p_3D_p_p100_p_3D.png"
+								alt="">
+						</div>
+						<div class="yjrdsaa">
+							<span>微信</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="yjr_kakdoas">
+				<div class="joasjdas">
+					<span style="font-size:13px;">COPYRIGHT (©) 2019 茶叶类网站 京ICP备41414141414-1号</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<template id="no1">
+		<div>
+			<div class="siao">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS82MWE3MmU5YWE1OGE3NWFmNjRkYWUyODNhMDMwNDU0MC5qcGc_p_p100_p_3D.jpg"
+								alt="">
+						</div>
+						<div class="swiper-slide">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNTkxNjY4MzYwNTc4MTlhMDVjNGZmNmQ5NWFjMzU0OGIuanBn.jpg"
+								alt="">
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<div class="yjrneei">
+				<div class="yjr_ooa">
+					<div class="yjr_xicha">
+						<div class="yjr_paa">
+							<span>
+								新茶上市
+							</span>
+							<span style="font-size:12px;">
+								Tea Leave
+							</span>
+						</div>
+					</div>
+					<div class="opn" v-for="i in arr">
+						<div class="yjr_tt">
+							<img class="pingpmah" :src="i.img" alt="">
+						</div>
+						<div class="yjr_tt1">
+							<a href="">{{i.title}}</a>
+						</div>
+						<div class="yjr_lpdasd">
+							<div class="yjr_lpdasd1">
+
+							</div>
+						</div>
+						<div class="yjr_qiandasd">
+							<span>￥{{i.mony}}</span>
+						</div>
+					</div>
+					<div class="yjr_hha">
+						<a href="javascript:;">→</a>
+					</div>
+				</div>
+			</div>
+			<div class="yjr_dasa">
+				<div class="knaadffsdaa">
+					<div class="heueqq">
+						<span class="xiaoa">关于我们</span>
+						<span class="xiaob">About</span>
+					</div>
+					<div class="lmnbza">
+						<div class="oopll">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS84YmIyNmU0NTBmNjQ2MGQ1Y2IyYTg1ODhiMGFhNjlmYy01NDB4MjgwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg"
+								alt="">
+						</div>
+						<div class="ooplr">
+							<div class="jldasdas">
+								<div class="kkjkaa">
+									茶叶源于中国，茶叶最早是被作为祭品使用的。但从春秋后期就被人们作为菜食，在西汉中期发展为药用，西汉后期才发展为宫廷高级饮料，普及民间作为普通饮料那是西晋以后的事。发现最早人工种植茶叶的遗迹在浙江余姚的田螺山遗址，已有6000多年的历史。饮茶始于中国。
+								</div>
+								<div class="dndsahdsa">
+									<a href="javascript:;">了解我们</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="logss">
+				<div class="yjr_box">
+					<div class="yjr_flow">
+						<div class="yjr_lp">
+							<div class="yjrsp">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC8yMzBlN2NhOWY2YjA2NGFiMzY3MjNkZmJhNWIzNTYyNC0xNTB4NjAucG5n.png"
+									alt="">
+							</div>
+						</div>
+						<div class="yjr_lp">
+							<div class="yjrsp">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9jNTQ4ZTEyZDAzYWExMTgyYTVmYzlhZjhiMGVkM2E4My0xNTB4NjAucG5n.png"
+									alt="">
+							</div>
+						</div>
+						<div class="yjr_lp">
+							<div class="yjrsp">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9mYTdiMzVjMDczODkyODg4NWM5Njc0NGNhM2RmMDM0NC0xNTB4NjAucG5n.png"
+									alt="">
+							</div>
+						</div>
+						<div class="yjr_lp">
+							<div class="yjrsp">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC8xN2VhY2JhNzRmZTgwNmQxOTU0YjkxZjQxN2EzNTNkOC0xNTB4NjAucG5n.png"
+									alt="">
+							</div>
+						</div>
+						<div class="yjr_lp">
+							<div class="yjrsp">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC8wMWMwMThiMDBjMDQxYzBiZDcxMjNhOTNmNWExOTI5OC0xNTB4NjAucG5n.png"
+									alt="">
+							</div>
+						</div>
+						<div class="yjr_lp">
+							<div class="yjrsp">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC8xZDI0ZmFiYjRlZGI4OTUwZTEyYjczOTE4ZTc5NjVkOS0xNTB4NjAucG5n.png"
+									alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="no2">
+		<div>
+			<div class="lkdasl"></div>
+			<div class="yjr_nskadas">
+				<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS80OWFlMzhhODY3ZWY3NWE0MDczZGY3NGJhMWY5OGMyNi5qcGc_p_p100_p_3D.jpg"
+					alt="">
+			</div>
+			<div class="ak1aa">
+				<div class="josadjas">
+					<div class="kjpoaksao">
+						<div class="jkasa">
+							<div class="naaa">
+								<span>春茶</span>
+							</div>
+						</div>
+						<div class="koasdas">
+							<div class="pltt">
+								饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。
+							</div>
+							<div class="pltt">
+								因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- 定时器那块 -->
+			<div class="paodong">
+				<div class="optiomda">
+
+				</div>
+			</div>
+
+			<div class="hetea">
+				<div class="jodsajdas">
+					<div class="hjadsa">
+						<div class="toutsad">
+							喝茶的好处
+						</div>
+						<div class="jodasd">
+							饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。
+							但并不是喝得越多越好，也不是所有的人都适合喝茶。一般来说，每天1-2次，每次3-5克、400毫升的饮量是比较适当的。一般，人们说喝茶还指喝水。
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 下面是效果不会加 -->
+			<div class="yjr_weibu">
+				<div class="yjr_dasdas">
+					<div class="yjr_ladjaos">
+						<div class="yjr_nxv1">
+							<div class="yjr_plousaa">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC82NzM1MTJkYjY0YzY3ZTQzN2MyMzE0YzJjNzcyNGYzZi5qcGc_p_p100_p_3D.jpg"
+									alt="">
+							</div>
+							<div class="yjr_kjhaga">
+								茶园计划
+							</div>
+							<div class="yjr_jsaawr">
+								明万历二十三年（1595）张源撰写的《茶录》中，对当时洞庭东西山绿茶（炒青）的采摘、炒制有较为详细的记载，其炒制过程分杀青、轻团、焙干等工序，已与当今洞庭碧螺春的炒制工艺基本一致。
+							</div>
+						</div>
+					</div>
+
+					<div class="yjr_ladjaos">
+						<div class="yjr_nxv1">
+							<div class="yjr_plousaa">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC80ZGYwMWE3NGZhMGFlYWI4MjJiYzUxOGFjYzZlYWE5Ni5qcGc_p_p100_p_3D.jpg"
+									alt="">
+							</div>
+							<div class="yjr_kjhaga">
+								茶叶品质鉴别
+							</div>
+							<div class="yjr_jsaawr">
+								明万历二十三年（1595）张源撰写的《茶录》中，对当时洞庭东西山绿茶（炒青）的采摘、炒制有较为详细的记载，其炒制过程分杀青、轻团、焙干等工序，已与当今洞庭碧螺春的炒制工艺基本一致。
+							</div>
+						</div>
+					</div>
+
+					<div class="yjr_ladjaos">
+						<div class="yjr_nxv1">
+							<div class="yjr_plousaa">
+								<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC80NWEyYmVlMTVmMTkxNzQ5NDY5MjExMGIyM2RhZGJkNS5qcGc_p_p100_p_3D.jpg"
+									alt="">
+							</div>
+							<div class="yjr_kjhaga">
+								冲泡工艺
+							</div>
+							<div class="yjr_jsaawr">
+								明万历二十三年（1595）张源撰写的《茶录》中，对当时洞庭东西山绿茶（炒青）的采摘、炒制有较为详细的记载，其炒制过程分杀青、轻团、焙干等工序，已与当今洞庭碧螺春的炒制工艺基本一致。
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="no3">
+		<div>
+			<div style="padding-top: 80px;">
+				<div class="list">
+					<div style="font-size: 24px;line-height: 86px;padding-left: 40px;float: left;">茶叶</div>
+					<ul>
+						<li v-for="i in arr_title" :style="{width:'60px',color:i==type?'green':''}" @click="type=i">
+							{{i}}</li>
+					</ul>
+				</div>
+				<div style="padding: 0 40px;box-sizing: border-box;">
+					<div class="cent">
+						<div v-if="type=='全部'">
+							<div class="cont" v-for="(i,$index) in arr">
+								<a href="javascript:;" @click="a_str1(arr[$index])">
+									<div class="item">
+										<img :src="i.image" alt="">
+										<h6>{{i.title}}</h6>
+										<div class="czh_bor">
+											<div></div>
+										</div>
+										<p>￥{{i.pice}}</p>
+										<div class="vc_read_more_wrapper">
+											<span style=" color:#d1d1d1;font-size:13px;font-family:微软雅黑;padding-top:5px;padding-bottom:5px;padding-left:8px;padding-right:8px;
+											border:solid 1px #d1d1d1;
+											" class="vc_read_more " title="茉莉花茶">→</span>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+						<div v-else="">
+							<div class="cont" v-for="(i,$index) in arr" v-if="i.type == type">
+								<a href="javascript:;" @click="a_str1(arr[$index])">
+									<div class="item">
+										<img :src="i.image" alt="">
+										<h6>{{i.title}}</h6>
+										<div class="czh_bor">
+											<div></div>
+										</div>
+										<p>￥{{i.pice}}</p>
+										<div class="vc_read_more_wrapper">
+											<span style=" color:#d1d1d1;font-size:13px;font-family:微软雅黑;padding-top:5px;padding-bottom:5px;padding-left:8px;padding-right:8px;
+											border:solid 1px #d1d1d1;
+											" class="vc_read_more " title="茉莉花茶">→</span>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</template>
+	<template id="no4">
+		<div>
+			<div style="padding-top: 80px;background: #fff;">
+				<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNzNlYjg4NTNhNmZkNTZiYWRhN2Q4ZjI4NjNkOWM1ODguanBn.jpg"
+					width="100%" height="205px" alt="">
+				<div
+					style='max-width:1280px;margin: 0 auto;padding:0 40px;box-sizing: border-box;padding-bottom: 50px;'>
+					<h2 class='titlea'>种植基地</h2>
+					<div class='b_txt'>
+						<p>公司拥有完整、科学、质量管理体系，通过ISO14001，ISO22000国际质量体系认 证，有机产品认证，拥有大量先进、专业的生产设备和检测仪器，秉承“顾客至</p>
+						<p>上，锐意进取”的经营理念，坚持“客户第一”的原则为广大客户提供优质的服务。</p>
+					</div>
+					<ul class='i_img'>
+						<li v-for="(i,$index) in img_arr" class="vl_pic_item" @click="pics_btn(i,$index)"><img :src="i"
+								alt=""></li>
+					</ul>
+				</div>
+				<div class="pics_mubu">
+					<button @click="closebtn">×</button>
+					<button class="play_pause" @click="pausebtn"><i class="el-icon-video-pause iconfont"
+							style="font-size:22px;">&#xe659;</i></button>
+					<div class="photoes" v-for="(i,$index) in img_arr"
+						:style="$index==index?{'opacity':'1'}:{'opacity':'0'}">
+						<img :src="i" alt="">
+					</div>
+					<button class="prev" @click="prevpic"><i class="el-icon-arrow-left iconfont"
+							style="font-size:22px;vertical-align: middle;">&#xe601;</i></button>
+					<button class="next" @click="nextpic"><i class="el-icon-arrow-right iconfont"
+							style="font-size:22px;vertical-align: middle;">&#xe603;</i></button>
+					<div class="list_photoes">
+						<div style="overflow: hidden;display: table;margin:auto;">
+							<img v-for="(i,$index) in img_arr" :src="i" alt="" @click="index=$index">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="no5">
+		<div>
+			<div class="opcity"></div>
+			<div class="yjr_xw_bigt">
+				<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS85MjBhZGMwYzUzZTg4ZDYxNjQ5YTQzNjAyZjkxZDQ3NC5qcGc_p_p100_p_3D.jpg"
+					alt />
+			</div>
+			<div style="padding:0 40px;box-sizing: border-box;">
+				<div style="max-width:1280px;padding:0 40px; min-height:1800px;margin: 60px auto 0; overflow:hidden;">
+					<ul class="xw"
+						style="width: 20%;height: 160px;float: left;border-top: 2px solid rgba(144,175,107,0.5); box-sizing: border-box;">
+						<li style="overflow:hidden;vertical-align: middle;" @click="type=item"
+							v-for="(item,index) in type_name" :key="index">
+							{{item | lee}}
+							<span style="float:left;color:#888; vertical-align: middle;"
+								class="iconfont">&#xe659;</span>
+						</li>
+					</ul>
+					<div style="width: 74%;float: right;">
+						<div v-for="(i,index) in arr">
+							<div v-show="type==i.list" v-for="(item,index) in i.text"
+								style="min-height: 190px;padding: 20px 15px 0; box-sizing: border-box;border-bottom: 1px solid #ccc;">
+								<div style="width: 65%;float: left;margin-right: 10%;">
+									<a href="javascript:;">
+										<div style="font-size: 18px;color: #000;margin-bottom: 10px;">{{item.title}}
+										</div>
+									</a>
+									<p style="color: #999999;font-size: 14px;line-height:1.5; margin-bottom: 27px;">
+										{{item.center}}</p>
+									<a href="javascript:;">
+										<div style="color: #90AF6B;font-size: 14px;height:28px;line-height:28px;">
+											{{item.read}}</div>
+									</a>
+								</div>
+								<a href="javascript:;">
+									<div class="imgbox" style="width: 25%;float: right;padding-top: 20px;">
+										<div style="width: 200px;height: 130px;margin: 0 auto;">
+											<img class="img" :src="item.img_url" alt style="width: 100%;height:100%;" />
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+	<template id="no6">
+		<div>
+			<div class="lkdasl"></div>
+			<div class="banner" style="width: 100%;height: 100%;">
+				<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS81NjM0YjlkMWViYWQ3MGRjYWVmYzU0MzQxYTRjM2RhYS5qcGc_p_p100_p_3D.jpg"
+					style="width: 100%; height: 100%;" alt />
+
+			</div>
+			<div class="dasddas">
+				<div class="czhubaa">
+					<span>中国历史上有很长的饮茶纪录，已经无法确切地查明到底是在什么年代了，但是大致的时代是有说法的。并且也可以找到证据显示，确实在世界上的很多地方饮茶的习惯是从中国传过去的。</span>
+				</div>
+			</div>
+			<div class="okpiua">
+				<div class="jodajs">
+					<div class="rjidsa">
+						<div class="rjrimsag">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9mYzdmNmQ5NzgzM2NiOTlkOWJjZjU1ZDMyY2M2MWI0Ni04MHg4MC5qcGc_p_p100_p_3D.jpg"
+								alt="">
+						</div>
+						<div class="jodas">
+							<div class="nbnzzd">
+								邮箱
+							</div>
+						</div>
+						<div class="ojdasod">
+							<span>info@email.com</span>
+						</div>
+					</div>
+					<div class="rjidsa">
+						<div class="rjrimsag">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9kNjhkMWVhYWNmODIyZDE4ZDE5MjYzYzdlMTljZjc1YS04MHg4MC5qcGc_p_p100_p_3D.jpg"
+								alt="">
+						</div>
+						<div class="jodas">
+							<div class="nbnzzd">
+								手机
+							</div>
+						</div>
+						<div class="ojdasod" style="font-size:14px;color:#bfbfbf;">
+							13725415481
+							<span>/ 010 6888 6888</span>
+						</div>
+					</div>
+					<div class="rjidsa">
+						<div class="rjrimsag">
+							<img src="https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC82ZmQ5NDYwYjYzMzVmNTM2ZjUzNjQ1MWJiYmEyMDlkZC04MHg4MC5qcGc_p_p100_p_3D.jpg"
+								alt="">
+						</div>
+						<div class="jodas">
+							<div class="nbnzzd">
+								地址
+							</div>
+						</div>
+						<div class="ojdasod">
+							<span>苏州市建外SOHO东区2号楼</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="lplpad">
+				<div class="jodajda">
+					<div class="czhmap" id="container">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+
+
+
+
+</body>
+<script type="text/javascript"
+	src="https://webapi.amap.com/maps?v=1.4.15&key=c8fef0bda8dc6f68d050c95334c4524f"></script>
+<script src="./node_modules/swiper/js/swiper.min.js"></script>
+<script src="vue.js"></script>
+
+<script src="vue-router.js"></script>
+<script>
+	var router = new VueRouter({
+		routes: [
+			{
+				path: '/', component: {
+					template: '#no1',
+					data() {
+						return {
+							arr: [
+								{
+									title: '茉莉花茶',
+									img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									mony: '223.0',
+									s: 1
+								},
+								{
+									title: '白牡丹',
+									img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									mony: '1235.0',
+									s: 1
+								},
+								{
+									title: '白毫银针',
+									img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									mony: '258.0',
+									s: 1
+								},
+								{
+									title: '云南普洱茶',
+									img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									mony: '500.0',
+									s: 1
+								},
+								{
+									title: '湖北老青茶',
+									img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									mony: '400.0',
+									s: 1
+								},
+								{
+									title: '霍山黄芽蒙洱银针',
+									img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									mony: '711.0',
+									s: 1
+								},
+							]
+						}
+					},
+					mounted() {
+						var swiper = new Swiper('.swiper-container', {
+							pagination: '.swiper-pagination',
+							paginationClickable: true,
+							autoplay: true
+						});
+					},
+				},
+
+
+			},
+			{ path: '/no2', component: { template: '#no2' } },
+			{
+				path: '/no3', component: {
+					template: '#no3',
+					data() {
+						return {
+							type: '全部',
+							arr_title: ['全部', '花茶', '白茶', '黑茶', '黄茶', '乌龙茶'],
+							arr: [
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvODMxNGZmNmYyYjkyNzcxZmY2N2U5NjdlZjQyNjAzZWItNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '茉莉花茶',
+									pice: '223',
+									type: '花茶',
+									uid: 1,
+									n: 0
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMGFkMzdiZDQwOGNjYWMwYzI0Y2JmNzdiMDZiNDg4ODAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '白牡丹',
+									pice: '1235',
+									type: '白茶',
+									uid: 2,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvOTc4NTUwMDZjYzA1MDQ1OGVkMDFmZjE2N2I4YjNkOTctNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '白毫银针',
+									pice: '258',
+									type: '白茶',
+									uid: 3,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMDMzMjg2Zjc0ZWU4M2ZiM2U5MTllZTgwMDc4MjRjNTAtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '云南普洱茶',
+									pice: '500',
+									type: '黑茶',
+									uid: 4,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjY1ZjU4NWU5ZmNmYjkxMDBlMzc1YmFkMDQyNTkwMzEtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '湖北老青茶',
+									pice: '400',
+									type: '黑茶',
+									uid: 5,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvMjhlYTFmMDQ0Y2NhOWI4NWEzYWZkMzExYzczZTY3MjQtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '霍山黄芽蒙洱银针',
+									pice: '711',
+									type: '黄茶',
+									uid: 6,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWM4NmNiNjkzOTdjOTM4NWQ4MzI0MDdlZDhhY2EwMmUtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '蒙顶黄芽',
+									pice: '450',
+									type: '黄茶',
+									uid: 7,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNWNjYjNmZjU3YWU2YjBmMmRiYWZmOTk2MzljY2E4N2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '冻顶乌龙茶',
+									pice: '620',
+									type: '乌龙茶',
+									uid: 8,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNDM1OTBkNjFjM2ViOGU2YzUyYWU3ZmM2N2I3YjQwZGMtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '大红袍',
+									pice: '3480',
+									type: '乌龙茶',
+									uid: 9,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+								{
+									image: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvYzNjYmVkZWE4N2JmNzZjOTUyODdjZWUyYWQ4MjgyM2MtNDAweDQwMC5qcGc_p_p100_p_3D.jpg',
+									title: '祁门红茶',
+									pice: '568',
+									type: '花茶',
+									uid: 10,
+									n: 0,
+									cat_info: '饮茶不但是传统饮食文化，同时，由于茶中含有多种抗氧化物质与抗氧化营养素，对于消除自由基有一定的效果。因此喝茶也有助防老，具养生保健功能，每天喝三两杯茶可起到防老的作用。茶叶中含有多种维生素和氨基酸，喝茶对于清油解腻，增强神经兴奋以及消食利尿也具有一定的作用。',
+									cat_b: ' HUACHA001 ',
+									cat_img: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iYmM0ZTQxZDFlYjVmNTk2NmE0MzIyYTZhMjhjNDVmZC5qcGc_p_p100_p_3D.jpg'
+
+								},
+							]
+						}
+					},
+
+
+				}
+			},
+			{
+				path: '/no4', component: {
+					template: '#no4',
+					methods: {
+						pics_btn(i, index) {
+							console.log(i)
+							var obody = document.querySelector('.pics_mubu')
+							setTimeout(() => {
+								obody.style.display = 'block'
+							}, 500)
+							this.index = index
+							this.timer = setInterval(() => {
+								this.nextpic()
+							}, 3000)
+							this.tiptype = true
+						},
+						pausebtn() {
+							var pause = document.querySelector('.play_pause>i')
+							if (this.tiptype) {
+								clearInterval(this.timer)
+								this.timer = null;
+								this.tiptype = false;
+								pause.className = 'el-icon-video-play'
+							} else {
+								pause.className = 'el-icon-video-pause'
+								this.timer = setInterval(() => {
+									this.nextpic()
+								}, 2000)
+								this.tiptype = true
+							}
+						},
+						closebtn() {
+							var obody = document.querySelector('.pics_mubu')
+							obody.style.top = '-100vh';
+							setTimeout(() => {
+								obody.style.display = 'none'
+								obody.style.top = '0';
+							}, 1000)
+						},
+						nextpic() {
+							// this.photoes=this.img_arr[this.index]
+							this.index++
+							if (this.index >= this.img_arr.length) {
+								this.index = 0
+							}
+						},
+						prevpic() {
+							this.index--
+							if (this.index <= -1) {
+								this.index = this.img_arr.length - 1
+							}
+						}
+					},
+					data() {
+						return {
+							timer: null,
+							tiptype: false,
+							photoes: '',
+							index: 0,
+							vllogo: 'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNzNlYjg4NTNhNmZkNTZiYWRhN2Q4ZjI4NjNkOWM1ODguanBn.jpg',
+							img_arr: [
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNWQ3ZTc0ZDI3NTEzM2MxZmZkYTVkZTFmY2FiNGFkZTctMzAweDMwMC5qcGc_p_p100_p_3D.jpg',
+
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvNzQwMmZhZTFiYWE3OTgxODA4MWYwM2I2N2UwZTU0ZDItMzAweDMwMC5qcGc_p_p100_p_3D.jpg',
+
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVlYzA0NGVmYmNiZGQwYzE0M2QwYmZhMGY2MjNkMDUtMzAweDMwMC5qcGc_p_p100_p_3D.jpg',
+
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMGQ5YWMxYWEzOWNmZmIzYzk4NDE0Njk4YzZmZGQwZjQtMzAweDMwMC5qcGc_p_p100_p_3D.jpg',
+
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvOWVkYTg5ZjIzMWEzOGFjODE5NmJiYmYyOTA5YWEyZjctMzAweDMwMC5qcGc_p_p100_p_3D.jpg',
+
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMTI1ZmM2NTk4YWE0NmFlY2JkOWY1NDAzYzkwYjM3ODctMzAweDMwMC5qcGc_p_p100_p_3D.jpg',
+
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDQvNGRmMDFhNzRmYTBhZWFiODIyYmM1MThhY2M2ZWFhOTYtMzAweDMwMC5qcGc_p_p100_p_3D.jpg',
+
+								'https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cHM6Ly81Y2RkM2FhNWM0NmVhLnQ3My5xaWZlaXllLmNvbS9xZnktY29udGVudC91cGxvYWRzLzIwMTkvMDUvMmZlZDQ0NjA2NDI0N2FmZWI4YTk0ZmQ0NGRiMDc5NzktMzAweDMwMC5qcGc_p_p100_p_3D.jpg'
+							],
+						}
+					}
+				}
+			},
+			{
+				path: '/no5', component: {
+					template: '#no5',
+					filters: {
+						lee: (a, b, c) => {
+							return a;
+						}
+					},
+					data() {
+						return {
+							type: "全部新闻",
+							type_name: ["全部新闻", "新茶动态", "产品新闻"],
+							arr: [
+								{
+									list: "全部新闻",
+									text: [
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS81ZDdlNzRkMjc1MTMzYzFmZmRhNWRlMWZjYWI0YWRlNy0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "2019茶叶展-第十六届上海国际茶业交易春季博览会",
+											center:
+												"野生种遍见于中国长江以南各省的山区，为小乔木状，叶片较大，常超过10厘米长，长期以来，经广泛栽培，毛被及叶型变化很大。茶叶可作饮品，含有多种有益成分，并有保健功效。",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS83NDAyZmFlMWJhYTc5ODE4MDgxZjAzYjY3ZTBlNTRkMi0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝什么茶叶好?春天适合喝什么茶?喝白茶喝什么茶叶好?",
+											center:
+												"2017年10月27日，世界卫生组织国际癌症研究机构公布的致癌物清单初步整理参考，茶在3类致癌物清单中。属于对人类致癌性可疑，尚无充分的人体或动物数据的物质类。",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC82NzM1MTJkYjY0YzY3ZTQzN2MyMzE0YzJjNzcyNGYzZi0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝茶的好处有哪些 6大好处告诉你",
+											center:
+												"中国历史上有很长的饮茶纪录，已经无法确切地查明到底是在什么年代了，但是大致的时代是有说法的。并且也可以找到证据显示，确实在世界上的很多地方饮茶的习惯是从中国传过去的。所以，很多人认为饮茶就是中国人首创...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS8wZDlhYzFhYTM5Y2ZmYjNjOTg0MTQ2OThjNmZkZDBmNC0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝茶也会有危险——茶这样喝真的很危险",
+											center:
+												"但是也有人能够找到证据指出，饮茶的习惯不仅仅是中国人发明的，在世界上的其他一些地方也是饮茶的发明地，例如印度、非洲等。1823年，一个英国侵略军的少校在印度发现了野生的大茶树，从而有人开始认定茶的发源...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC80ZGYwMWE3NGZhMGFlYWI4MjJiYzUxOGFjYzZlYWE5Ni0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝什么茶好?如何正确喝茶?",
+											center:
+												"中国饮茶起源众说纷纭：追溯中国人饮茶的起源，有的认为起于上古，有的认为起于周，起于秦汉、三国、南北朝、唐代的说法也都有，造成众说纷纭的主要原因是因唐代以前无“茶”字，而只有“荼”字的记载，直到茶经的作...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iNzQ1ZThkYTQ1NTQ4MjJhYmMyM2EyYTU0ZDY0MmQzYS0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝茶养生好处多 但是喝错茶竟会致丧命",
+											center:
+												"唐．陆羽《茶经》：“茶之为饮，发乎神农氏。”，在中国的文化发展史上，往往是把一切与农业、与植物相关的事物起源最终都归结于神农氏。而中国饮茶起源于神农的说法也因民间传说而衍生出不同的观点。有人认为茶是神...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS8yZmVkNDQ2MDY0MjQ3YWZlYjhhOTRmZDQ0ZGIwNzk3OS0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "服用“阿司匹林”尽量少喝茶",
+											center:
+												"晋．常璩《华阳国志．巴志》：“周武王伐纣，实得巴蜀之师，......茶蜜......皆纳贡之。”这一记载表明在周朝的武王伐纣时，巴国就已经以茶与其它珍贵产品纳贡与周武王了。《华阳国志》中还记载，那时并...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS8xMjVmYzY1OThhYTQ2YWVjYmQ5ZjU0MDNjOTBiMzc4Ny0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "碧螺春茶叶喝第几泡才是最好喝的呢?",
+											center:
+												"中国饮茶起于六朝的说法，有人认为起于“孙皓以茶代酒”，有人认为系“王肃茗饮”而始，日本、印度则流传饮茶系起于“达摩禅定”的说法。然而秦汉说具有史料证据确凿可考，因而削弱了六朝说的正确性。",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC80NWEyYmVlMTVmMTkxNzQ5NDY5MjExMGIyM2RhZGJkNS0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "饮用碧螺春茶的几个注意事项",
+											center:
+												"市卫计委表示，今年，北京将按照市委十六次全会部署的原则，启动医疗服务价格改革。据悉，改革的总体原则将是“...",
+											read: "阅读正文 →"
+										}
+									]
+								},
+								{
+									list: "新茶动态",
+									text: [
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS81ZDdlNzRkMjc1MTMzYzFmZmRhNWRlMWZjYWI0YWRlNy0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "2019茶叶展-第十六届上海国际茶业交易春季博览会",
+											center:
+												"野生种遍见于中国长江以南各省的山区，为小乔木状，叶片较大，常超过10厘米长，长期以来，经广泛栽培，毛被及叶型变化很大。茶叶可作饮品，含有多种有益成分，并有保健功效。",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS8wZDlhYzFhYTM5Y2ZmYjNjOTg0MTQ2OThjNmZkZDBmNC0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝茶也会有危险——茶这样喝真的很危险",
+											center:
+												"但是也有人能够找到证据指出，饮茶的习惯不仅仅是中国人发明的，在世界上的其他一些地方也是饮茶的发明地，例如印度、非洲等。1823年，一个英国侵略军的少校在印度发现了野生的大茶树，从而有人开始认定茶的发源...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC9iNzQ1ZThkYTQ1NTQ4MjJhYmMyM2EyYTU0ZDY0MmQzYS0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝茶养生好处多 但是喝错茶竟会致丧命",
+											center:
+												"唐．陆羽《茶经》：“茶之为饮，发乎神农氏。”，在中国的文化发展史上，往往是把一切与农业、与植物相关的事物起源最终都归结于神农氏。而中国饮茶起源于神农的说法也因民间传说而衍生出不同的观点。有人认为茶是神...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS8yZmVkNDQ2MDY0MjQ3YWZlYjhhOTRmZDQ0ZGIwNzk3OS0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "服用“阿司匹林”尽量少喝茶",
+											center:
+												"晋．常璩《华阳国志．巴志》：“周武王伐纣，实得巴蜀之师，......茶蜜......皆纳贡之。”这一记载表明在周朝的武王伐纣时，巴国就已经以茶与其它珍贵产品纳贡与周武王了。《华阳国志》中还记载，那时并...",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS8xMjVmYzY1OThhYTQ2YWVjYmQ5ZjU0MDNjOTBiMzc4Ny0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "碧螺春茶叶喝第几泡才是最好喝的呢?",
+											center:
+												"中国饮茶起于六朝的说法，有人认为起于“孙皓以茶代酒”，有人认为系“王肃茗饮”而始，日本、印度则流传饮茶系起于“达摩禅定”的说法。然而秦汉说具有史料证据确凿可考，因而削弱了六朝说的正确性。",
+											read: "阅读正文 →"
+										}
+									]
+								},
+								{
+									list: "产品新闻",
+									text: [
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNS83NDAyZmFlMWJhYTc5ODE4MDgxZjAzYjY3ZTBlNTRkMi0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝什么茶叶好?春天适合喝什么茶?喝白茶喝什么茶叶好?",
+											center:
+												"2017年10月27日，世界卫生组织国际癌症研究机构公布的致癌物清单初步整理参考，茶在3类致癌物清单中。属于对人类致癌性可疑，尚无充分的人体或动物数据的物质类。",
+											read: "阅读正文 →"
+										},
+										{
+											img_url:
+												"https://ccdn.goodq.top/caches/9b69daffc17579b848483c854813cad2/aHR0cDovLzVjZGQzYWE1YzQ2ZWEudDczLnFpZmVpeWUuY29tL3FmeS1jb250ZW50L3VwbG9hZHMvMjAxOS8wNC80ZGYwMWE3NGZhMGFlYWI4MjJiYzUxOGFjYzZlYWE5Ni0yMDB4MTMwLmpwZw_p_p100_p_3D_p_p100_p_3D.jpg",
+											title: "喝什么茶好?如何正确喝茶?",
+											center:
+												"中国饮茶起源众说纷纭：追溯中国人饮茶的起源，有的认为起于上古，有的认为起于周，起于秦汉、三国、南北朝、唐代的说法也都有，造成众说纷纭的主要原因是因唐代以前无“茶”字，而只有“荼”字的记载，直到茶经的作...",
+											read: "阅读正文 →"
+										}
+									]
+								}
+							]
+						};
+					}
+				},
+
+
+
+
+
+
+			},
+			{
+				path: '/no6', component: {
+					template: '#no6',
+					mounted() {
+						var map = new AMap.Map('container');
+					},
+				}
+			},
+		]
+	})
+	new Vue({
+		el: "#box",
+		data: {
+			arr1: [
+				{ name: '首页', path: '#/' },
+				{ name: '关于', path: '#/no2' },
+				{ name: '茶叶', path: '#/no3' },
+				{ name: '基地', path: '#/no4' },
+				{ name: '新闻', path: '#/no5' },
+				{ name: '联系', path: '#/no6' },
+			],
+		},
+		popupVisible: false,
+		kuang: false,
+		router
+	})
+</script>
+
+</html>
